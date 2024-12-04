@@ -2,19 +2,18 @@ import java.time.LocalDate;
 
 public class Spot {
 
+    public static final int maxNumOfSlots=72;
 
     protected int spotID;
     protected String type;
-    protected Slot [] slots;
+    protected Slot [] slots= new Slot[maxNumOfSlots];
     public int slotCounter;
 
-    public static final int maxNumOfSlots=72;
 
 
     public Spot(int spotID, String type) {
         this.spotID = spotID;
         this.type = type;
-        this.slots=new Slot[maxNumOfSlots];
         slotCounter=0;
 
     }
@@ -32,16 +31,21 @@ public class Spot {
         LocalDate today = LocalDate.now();
         LocalDate ThreeDaysFromNow = today.plusDays(3);
 
+
+        // Check if the slot's reservation date is before today
+        if (slot.getStartDate().isBefore(today)){
+            return 1; // Invalid date
+        }
         // Check if the slot's reservation date is within the allowed range
         if (slot.getStartDate().isAfter(ThreeDaysFromNow)) {
-            return 1; // Cannot add a slot more than 3 days in advance
+            return 2; // Cannot add a slot more than 3 days in advance
         }
 
         // Check for overlapping slots
         for (int i = 0; i < slotCounter; i++) {
             // Check if the reservation dates overlap
             if (slots[i].getStartDate().isEqual(slot.getStartDate()) && (slot.getStartTime().isBefore(slots[i].getEndTime()) && slot.getEndTime().isAfter(slots[i].getStartTime()))) {
-                return 2; // Overlapping slot
+                return 3; // Overlapping slot
             }
         }
 
@@ -51,10 +55,7 @@ public class Spot {
             slotCounter++;
             return 0; // Added
         } else {
-            return 3; // No more slots available
+            return 4; // No more slots available
         }
-    }
-    void removeSlot(Slot slot){
-        slot=null;
     }
 }
