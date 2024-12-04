@@ -5,13 +5,23 @@ public class Slot {
 
     protected LocalTime startTime;
     protected LocalTime endTime;
+    protected int startHour;
+    protected int endHour;
+    protected int startMinute;
+    protected int endMinute;
     public double fees;
     protected LocalDate startDate;
     protected LocalDate endDate;
 
     public Slot(int startHour, int startMinute, int endHour, int endMinute, double fees, int startYear, int startMonth, int startDay,int endYear, int endMonth, int endDay) {
-        startTime = LocalTime.of(startHour,startMinute);
-        endTime = LocalTime.of(endHour,endMinute);
+
+        this.startHour = startHour;
+        this.startMinute = startMinute;
+        this.endHour = endHour;
+        this.endMinute = endMinute;
+
+        startTime=LocalTime.of(this.startHour,this.startMinute);
+        endTime=LocalTime.of(this.endHour,this.endMinute);
         this.fees = fees;
         startDate = LocalDate.of(startYear,startMonth,startDay);
         endDate = LocalDate.of(endYear,endMonth,endDay);
@@ -50,5 +60,21 @@ public class Slot {
 
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public int getStartHour() {
+        return startHour;
+    }
+
+    public int getEndHour() {
+        return endHour;
+    }
+
+    public int getStartMinute() {
+        return startMinute;
+    }
+
+    public int getEndMinute() {
+        return endMinute;
     }
 }
