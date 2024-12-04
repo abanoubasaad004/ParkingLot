@@ -49,7 +49,7 @@ public class Spot {
         if (slotCounter < maxNumOfSlots) {
             slots[slotCounter] = slot;
             slotCounter++;
-            return 0;
+            return 0; // Added
         } else {
             return 3; // No more slots available
         }
