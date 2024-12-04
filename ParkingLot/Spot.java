@@ -54,4 +54,7 @@ public class Spot {
             return 3; // No more slots available
         }
     }
+    void removeSlot(Slot slot){
+        slot=null;
+    }
 }
