@@ -27,20 +27,6 @@ public class Spot {
         return type;
     }
     public int addSlot(Slot slot) {
-        LocalDate today = LocalDate.now();
-        LocalDate ThreeDaysFromNow = today.plusDays(3);
-
-
-        // Check if the slot's reservation date is before today
-        if (slot.getStartDate().isBefore(today)){
-            return 1; // Invalid date
-        }
-
-
-        // Check if the slot's reservation date is within the allowed range
-        if (slot.getStartDate().isAfter(ThreeDaysFromNow)) {
-            return 2; // Cannot add a slot more than 3 days in advance
-        }
 
         // Check for overlapping slots
         for (int i = 0; i < slotCounter; i++) {
