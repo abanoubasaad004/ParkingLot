@@ -1,4 +1,6 @@
+import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Spot {
 
@@ -28,6 +30,34 @@ public class Spot {
     }
     public int addSlot(Slot slot) {
 
+        Scanner Input = new Scanner(System.in);
+
+        int startHour, endHour, startMonth, startDay, endMonth, endDay;
+        double fees;
+
+        System.out.println("Enter the start hour of the slot :");
+        startHour = Input.nextInt();
+
+        System.out.println("Enter the start month of the slot :");
+        startMonth = Input.nextInt();
+
+        System.out.println("Enter the start day of the slot :");
+        startDay = Input.nextInt();
+
+        System.out.println("Enter the end hour of the slot :");
+        endHour = Input.nextInt();
+
+        System.out.println("Enter the end month of the slot :");
+        endMonth = Input.nextInt();
+
+        System.out.println("Enter the end day of the slot :");
+        endDay = Input.nextInt();
+
+        System.out.println("Enter the fees for this slot :");
+        fees = Input.nextDouble();
+
+
+
         // Check for overlapping slots
         for (int i = 0; i < slotCounter; i++) {
             // Check if the reservation dates overlap
@@ -38,7 +68,7 @@ public class Spot {
 
         // Add the slot if there are no issues
         if (slotCounter < maxNumOfSlots) {
-            slots[slotCounter] = slot;
+            slots[slotCounter] =  new Slot(startHour,endHour,fees,startMonth,startDay,endMonth,endDay);
             slotCounter++;
             return 0; // Added
         } else {

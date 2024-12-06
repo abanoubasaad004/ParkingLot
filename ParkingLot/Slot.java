@@ -13,12 +13,12 @@ public class Slot {
     protected LocalDate startDate;
     protected LocalDate endDate;
 
-    public Slot(int startHour, int startMinute, int endHour, int endMinute, double fees, int startYear, int startMonth, int startDay,int endYear, int endMonth, int endDay) {
+    public Slot(int startHour, int endHour, double fees, int startMonth, int startDay, int endMonth, int endDay) {
 
         this.startHour = startHour;
-        this.startMinute = startMinute;
+        this.startMinute = 0;
         this.endHour = endHour;
-        this.endMinute = endMinute;
+        this.endMinute = 0;
 
         startTime=LocalTime.of(this.startHour,this.startMinute);
         endTime=LocalTime.of(this.endHour,this.endMinute);
